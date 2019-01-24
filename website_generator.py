@@ -1,4 +1,4 @@
-global divider 
+divider = '----------------------------------------------'
 
 def main():
     
@@ -6,10 +6,11 @@ def main():
     css = open('style.css', 'a')
     
     
-    available_templates = ['minimal', 'portfolio', 'modern']
+    available_templates = {'minimal':'A simple website with an "About" section, "Contact" section, and a simple header and navigation bar.',
+                           'portfolio':'''A website to show off any projects you've made. Contains everything in the minal setup with an additional section to show off projects.''',
+                           }
     
     
-    divider = '----------------------------------------------'
     print(divider)
     print('|             Website Generator              |')
     print(divider)
@@ -34,26 +35,47 @@ def main():
     ''')
     
     print()
-    print('Below is a list of the current templates we offer. Please select one to get started:')
+    print('Below is a list of the current templates we offer. Please select one to get started:\n')
+    print('TIP: type "info templatename" to learn more about that type of website.')
     
     for option in available_templates:
-        print('- ' + option)
+        print('- ' + option.capitalize())
     
     print()
     
-    template_choice = input('Your template choice: ').lower()
+    check = False
     
-#    while not template_choice in available_templates:
-#        print()
-#        print('''Sorry, that's not an available template. Please choose from the list above.''')
-#        template_choice = input('Your template choice: ').lower()
-    
-#    if template_choice == 'modern':
-#        modern()
-#    elif template_choice == 'minimal':
-#        minimal()
-#    else:
-#        portfolio()
+    while check != True:
+        template_choice = input('Your template choice: ').lower()
+        user_choice = template_choice.split(' ')
         
+        if user_choice[0] == 'info':
+            try:
+                print()
+                print(available_templates[user_choice[1]] + '\n')
+            except KeyError:
+                print()
+                print('''Sorry, that's not an available template. Please choose from the list above.''')
+                template_choice = input('Your template choice: ').lower()
+        
+        else:
+            while not template_choice in available_templates:
+                print()
+                print('''Sorry, that's not an available template. Please choose from the list above.''')
+                template_choice = input('Your template choice: ').lower()
+            
+            if template_choice == 'modern':
+                modern()
+                check = True
+            elif template_choice == 'minimal':
+                minimal()
+                check = True
+
+
+def minimal():
+    print(divider)
+    print('|                  Minimal                   |')
+    print(divider)
+    
 
 main()
