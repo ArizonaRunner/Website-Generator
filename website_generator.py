@@ -35,8 +35,8 @@ def main():
     ''')
     
     print()
-    print('Below is a list of the current templates we offer. Please select one to get started:\n')
-    print('TIP: type "info templatename" to learn more about that type of website.')
+    print('Below is a list of the current templates we offer. Please select one to get started:')
+    print('TIP: type "info templatename" to learn more about that type of website.\n')
     
     for option in available_templates:
         print('- ' + option.capitalize())
