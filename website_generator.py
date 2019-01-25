@@ -6,9 +6,11 @@ def main():
     css = open('style.css', 'a')
     
     
-    available_templates = {'minimal':'A simple website with apre-set color shceme with clean, minimal colors.',
-                           'portfolio':'''A website to show off any projects you've made. Contains everything in the minal setup with an additional section to show off projects.''',
-                           }
+    available_templates = 
+    {'minimal':'A simple website with apre-set color shceme with clean, minimal colors.',
+    'portfolio':'''A website to show off any projects you've made. Contains everything in the minal setup with an 
+     additional section to show off projects.''',
+    }
     
     print(divider)
     print('|             Website Generator              |')
