@@ -6,10 +6,9 @@ def main():
     css = open('style.css', 'a')
     
     
-    available_templates = {'minimal':'A simple website with an "About" section, "Contact" section, and a simple header and navigation bar.',
+    available_templates = {'minimal':'A simple website with apre-set color shceme with clean, minimal colors.',
                            'portfolio':'''A website to show off any projects you've made. Contains everything in the minal setup with an additional section to show off projects.''',
                            }
-    
     
     print(divider)
     print('|             Website Generator              |')
@@ -32,6 +31,7 @@ def main():
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     </head>
+    
     ''')
     
     print()
@@ -65,17 +65,73 @@ def main():
                 template_choice = input('Your template choice: ').lower()
             
             if template_choice == 'modern':
-                modern()
+                modern(html, css, website_name)
                 check = True
             elif template_choice == 'minimal':
-                minimal()
+                minimal(html, css, website_name)
+                check = True
+            elif template_choice == 'custom':
+                custom(html, css, website_name)
                 check = True
 
 
-def minimal():
+def minimal(html, css, website_name):
     print(divider)
     print('|                  Minimal                   |')
     print(divider)
+    print()
+    html.write(
+    '''
+<body class='bg-light'>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top " id='main-nav'>
+  
+    '''
+    )
     
+    
+    logo = input('Does your website have a logo (Yes/No)? ').lower()
+    
+    if logo == 'yes':
+        logo_url = input('Okay, please provide the url to your logo: ')
+        html.write(
+        '''<a class="navbar-brand"><img src="''' + logo_url +'''"></a> '''
+        )
+    if logo == 'no':
+        print('''No problem! We will use your website's name as the logo.''')
+        html.write(
+        '''<a class="navbar-brand" href="index.html">''' + website_name + '''</a>'''
+        )
+    
+    html.write(
+    '''
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+        <div class='container'>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+            
+    '''
+    )
+    
+    section_amount = int(input('How many sections will you have in your website? '))
+    
+    while not sections.isnumeric():
+        sections = int(input('How many sections will you have in your website? '))
+    
+    sections = []
+    
+    for i in range(0,sections):
+        section = input('Name of section', i + ': ')
+        sections.append(section)
+        html.write(
+        '''
+        <li class="nav-item">
+        <a class="nav-link" href="''' + section +'''">''' + section.capitalize() + '''</a>
+      </li>
+        '''
+        )
 
 main()
