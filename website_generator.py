@@ -116,15 +116,15 @@ def minimal(html, css, website_name):
     '''
     )
     
-    section_amount = int(input('How many sections will you have in your website? '))
+    section_amount = input('How many sections will you have in your website? ')
     
-    while not sections.isnumeric():
-        sections = int(input('How many sections will you have in your website? '))
+    while not section_amount.isnumeric():
+        section_amount = input('How many sections will you have in your website? ')
     
     sections = []
     
-    for i in range(0,sections):
-        section = input('Name of section', i + ': ')
+    for i in range(1,int(section_amount) + 1):
+        section = input('Name of section ' + str(i) + ': ')
         sections.append(section)
         html.write(
         '''
